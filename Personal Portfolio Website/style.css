@@ -1,0 +1,441 @@
+
+        /* General body and typography styling */
+        :root {
+            --primary-bg: #121212;
+            --secondary-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --accent-color: #00aaff;
+            --card-color: #2a2a2a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Navbar Styling --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.9);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .navbar-item a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 400;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-item a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-item a:hover::after,
+        .navbar-item a.active::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu button and styling */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        .hamburger span {
+            height: 2px;
+            width: 25px;
+            background: var(--text-color);
+            margin: 4px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .navbar-menu {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary-bg);
+                padding: 1rem 0;
+                text-align: center;
+                gap: 1rem;
+            }
+            .navbar-menu.active {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+        }
+
+
+        /* --- Hero Section Styling --- */
+        .hero {
+            position: relative; /* Needed for positioning the canvas */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px; /* Offset for fixed navbar */
+            overflow: hidden; /* Hide anything that goes outside the hero section */
+        }
+        
+        /* Full-page canvas for the digital rain */
+        #digital-rain-canvas {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: -1; /* Place behind all content */
+        }
+
+        .hero-content {
+            position: relative; /* Ensure content is on top of canvas */
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Style for the transparent section boxes */
+        .section-box {
+            background-color: rgba(42, 42, 42, 0.7); /* A semi-transparent dark grey */
+            backdrop-filter: blur(5px); /* Add a blur effect for better readability */
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 1160px; /* To prevent it from being too wide */
+            position: relative; /* Create a new stacking context */
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent-color);
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(0, 170, 255, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.4); }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: #b0b0b0;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #c0c0c0;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 12px 24px;
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            background-color: #0088cc;
+            box-shadow: 0 5px 15px rgba(0, 170, 255, 0.4);
+        }
+        
+        .typed-text {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* --- General Section Styling --- */
+        section {
+            padding: 80px 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        section:nth-of-type(odd) {
+            background-color: transparent;
+        }
+        section:nth-of-type(even) {
+            background-color: transparent;
+        }
+
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+        }
+
+        /* --- Cards and Grid Layout --- */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background-color: var(--card-color);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .card-subtitle {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+        }
+        
+        .card-description {
+            font-size: 0.9rem;
+            color: #c0c0c0;
+        }
+
+        /* --- Skills Section Styling --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .skill-item {
+            text-align: center;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateY(-5px);
+            color: var(--accent-color);
+        }
+        
+        .skill-item i {
+            font-size: 3rem;
+            color: var(--text-color);
+            transition: color 0.3s ease;
+        }
+        
+        .skill-item:hover i {
+            color: var(--accent-color);
+        }
+        
+        .skill-item p {
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* --- Certificate Section Specifics --- */
+        .certificate-card img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .certificate-card:hover img {
+            transform: scale(1.02);
+        }
+
+        /* --- Footer and Social Links --- */
+        .footer {
+            background-color: transparent;
+            text-align: center;
+            padding: 40px 0 20px 0;
+            border-top: 1px solid var(--secondary-bg);
+        }
+
+        .footer h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .contact-links a i {
+            font-size: 1.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-color);
+            font-size: 1.5rem;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 2px solid var(--text-color);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-bg);
+            transform: scale(1.1);
+            border-color: var(--accent-color);
+        }
+
+        .copyright {
+            color: #888;
+            font-size: 0.8rem;
+        }
+        
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero h2 {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .contact-links {
+                flex-direction: column;
+            }
+        }
+
+    

@@ -1,0 +1,2 @@
+# Portfolio
+A modern and responsive personal portfolio built using HTML, CSS, JavaScript, and Python. This website showcases my skills, projects, education, and achievements in a clean, professional layout. It serves as a digital resume highlighting my work in data analysis, web development, and AI-based projects, with integrated links to my GitHub, LinkedIn, and contact form for collaboration or opportunities.
